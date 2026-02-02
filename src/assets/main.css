@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-gray-950 text-gray-100;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .card {
+    @apply bg-gray-900 border border-gray-800 rounded-lg shadow-lg;
+  }
+
+  .card-header {
+    @apply px-6 py-4 border-b border-gray-800;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-800 hover:bg-gray-700 text-gray-100 border border-gray-700;
+  }
+
+  .storage-slot {
+    @apply bg-storage-slot/10 border border-storage-slot/30 rounded p-4;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .storage-slot:hover {
+    @apply bg-storage-slot/20 border-storage-slot/50 shadow-lg shadow-storage-slot/20;
+  }
+
+  .memory-cell {
+    @apply bg-gray-800 border border-gray-700 rounded text-center p-2 font-mono text-sm;
+    transition: all 0.2s ease;
+  }
+
+  .memory-cell.active {
+    @apply bg-memory-data/20 border-memory-data;
+  }
+
+  .code-block {
+    @apply bg-gray-900 rounded-lg p-4 overflow-x-auto;
+  }
+
+  .tag-entry {
+    @apply bg-gray-800 border border-gray-700 rounded-lg p-3;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-purple-400;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px currentColor;
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+/* Code syntax highlighting theme */
+pre.shiki {
+  @apply rounded-lg p-4 overflow-x-auto;
+}
+
+.shiki-line {
+  @apply px-4 -mx-4;
+}
+
+.shiki-line.highlighted {
+  @apply bg-primary-600/10 border-l-4 border-primary-500;
+}
