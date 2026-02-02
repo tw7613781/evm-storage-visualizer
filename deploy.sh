@@ -45,33 +45,33 @@ pull_image() {
 # Function to start services
 start_services() {
     print_info "Starting services..."
-    docker-compose -f ${COMPOSE_FILE} up -d
+    docker compose -f ${COMPOSE_FILE} up -d
     print_info "Services started successfully"
 }
 
 # Function to stop services
 stop_services() {
     print_info "Stopping services..."
-    docker-compose -f ${COMPOSE_FILE} down
+    docker compose -f ${COMPOSE_FILE} down
     print_info "Services stopped"
 }
 
 # Function to restart services
 restart_services() {
     print_info "Restarting services..."
-    docker-compose -f ${COMPOSE_FILE} restart
+    docker compose -f ${COMPOSE_FILE} restart
     print_info "Services restarted"
 }
 
 # Function to view logs
 view_logs() {
-    docker-compose -f ${COMPOSE_FILE} logs -f --tail=100
+    docker compose -f ${COMPOSE_FILE} logs -f --tail=100
 }
 
 # Function to show status
 show_status() {
     print_info "Service status:"
-    docker-compose -f ${COMPOSE_FILE} ps
+    docker compose -f ${COMPOSE_FILE} ps
 }
 
 # Function to update to new version
