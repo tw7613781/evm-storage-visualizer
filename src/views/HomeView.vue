@@ -1,183 +1,239 @@
 <template>
   <div class="min-h-screen bg-gray-950">
-    <!-- Header -->
-    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-xl">EVM</span>
-          </div>
-          <div>
-            <h1 class="text-xl font-bold text-white">EVM Storage & Memory Visualizer</h1>
-            <p class="text-xs text-gray-400">Based on did-contracts</p>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <!-- Hero Section -->
-    <section class="container mx-auto px-6 py-20">
-      <div class="text-center max-w-4xl mx-auto">
-        <h2 class="text-5xl font-bold text-white mb-6">
-          Understand EVM Storage at a
-          <span class="text-gradient bg-gradient-to-r from-primary-400 to-purple-400">Deeper Level</span>
-        </h2>
-        <p class="text-xl text-gray-400 mb-8">
-          Interactive visualizations of advanced Solidity patterns from the did-contracts project
-        </p>
-        <div class="flex justify-center gap-4">
+    <section class="relative overflow-hidden">
+      <!-- Background gradient - owl themed -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-950 to-indigo-900/20"></div>
+      
+      <div class="relative container mx-auto px-6 py-20">
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Owl Logo -->
+          <div class="mb-8 flex justify-center">
+            <div class="w-24 h-24 rounded-full shadow-2xl shadow-blue-500/30 overflow-hidden">
+              <!-- Owl SVG inline - matching the logo -->
+              <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <!-- Main background circle -->
+                <circle cx="50" cy="50" r="50" fill="#2d4a6f"/>
+                
+                <!-- Darker top arc for head -->
+                <path d="M 10 50 Q 10 15 50 15 Q 90 15 90 50 Z" fill="#1e3a5f"/>
+                
+                <!-- Left eye (large white circle) -->
+                <ellipse cx="32" cy="38" rx="13" ry="14" fill="white"/>
+                <!-- Right eye (large white circle) -->
+                <ellipse cx="68" cy="38" rx="13" ry="14" fill="white"/>
+                <!-- Bridge connecting eyes -->
+                <rect x="32" y="34" width="36" height="8" fill="white"/>
+                
+                <!-- Left pupil -->
+                <circle cx="32" cy="38" r="8" fill="#1e3a5f"/>
+                
+                <!-- Right pupil -->
+                <circle cx="68" cy="38" r="8" fill="#1e3a5f"/>
+                
+                <!-- Body (lower half) -->
+                <ellipse cx="50" cy="65" rx="35" ry="25" fill="#2d4a6f"/>
+                
+                <!-- Left foot -->
+                <g transform="translate(35, 75)">
+                  <rect x="-3" y="0" width="6" height="12" rx="2" fill="white"/>
+                  <line x1="-4" y1="12" x2="-6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="0" y1="12" x2="0" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="4" y1="12" x2="6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                
+                <!-- Right foot -->
+                <g transform="translate(65, 75)">
+                  <rect x="-3" y="0" width="6" height="12" rx="2" fill="white"/>
+                  <line x1="-4" y1="12" x2="-6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="0" y1="12" x2="0" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="4" y1="12" x2="6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Blockchain Deep Dive
+          </h1>
+          
+          <!-- Tagline -->
+          <p class="text-xl md:text-2xl text-gray-400 mb-8">
+            Interactive learning platform for <span class="text-blue-400">blockchain fundamentals</span>
+          </p>
+
+          <!-- Description -->
+          <p class="text-gray-500 max-w-2xl mx-auto mb-12">
+            From EVM internals to Solana architecture, from security patterns to DeFi mathematics.
+            Learn through interactive visualizations and real-world case studies.
+          </p>
+
+          <!-- CTA Button -->
           <button 
             @click="scrollToModules"
-            class="btn btn-primary px-8 py-3 text-lg"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-blue-500/50 transition-all inline-flex items-center"
           >
-            Explore Visualizations
+            Explore Learning Modules
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
         </div>
+
+        <!-- Tech Stack Badges -->
+        <div class="flex flex-wrap justify-center gap-3 mt-12 max-w-3xl mx-auto">
+          <span class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-sm">
+            EVM Storage & Memory
+          </span>
+          <span class="px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-full text-sm">
+            Assembly Optimization
+          </span>
+          <span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-full text-sm">
+            Interactive Learning
+          </span>
+        </div>
       </div>
     </section>
 
-    <!-- Features Grid -->
-    <section class="container mx-auto px-6 py-16" ref="modulesSection">
-      <h3 class="text-3xl font-bold text-white text-center mb-12">Visualization Modules</h3>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        <!-- ERC-7201 Module -->
-        <router-link 
-          to="/storage/erc7201"
-          class="card hover:scale-105 transition-transform duration-300 group"
-        >
-          <div class="card-header">
-            <div class="flex items-center justify-between">
-              <h4 class="text-xl font-bold text-white">ERC-7201 Calculator</h4>
-              <div class="w-12 h-12 bg-storage-slot/20 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-storage-slot" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="text-gray-400 mb-4">
-              Interactive storage slot calculator with animated step-by-step breakdown of the ERC-7201 formula.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-storage-slot/10 text-storage-slot rounded-full text-sm">Storage Layout</span>
-              <span class="px-3 py-1 bg-storage-slot/10 text-storage-slot rounded-full text-sm">Namespaces</span>
-              <span class="px-3 py-1 bg-storage-slot/10 text-storage-slot rounded-full text-sm">UUPS</span>
-            </div>
-          </div>
-        </router-link>
-
-        <!-- Namespaces Module -->
-        <router-link 
-          to="/storage/namespaces"
-          class="card hover:scale-105 transition-transform duration-300 group"
-        >
-          <div class="card-header">
-            <div class="flex items-center justify-between">
-              <h4 class="text-xl font-bold text-white">Storage Namespaces</h4>
-              <div class="w-12 h-12 bg-storage-namespace/20 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-storage-namespace" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="text-gray-400 mb-4">
-              Compare multiple storage namespaces side-by-side and understand collision avoidance.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-storage-namespace/10 text-storage-namespace rounded-full text-sm">Multi-layer</span>
-              <span class="px-3 py-1 bg-storage-namespace/10 text-storage-namespace rounded-full text-sm">Upgradeable</span>
-            </div>
-          </div>
-        </router-link>
-
-        <!-- Tag.Group Module -->
-        <router-link 
-          to="/tag-group"
-          class="card hover:scale-105 transition-transform duration-300 group"
-        >
-          <div class="card-header">
-            <div class="flex items-center justify-between">
-              <h4 class="text-xl font-bold text-white">Tag.Group Structure</h4>
-              <div class="w-12 h-12 bg-storage-data/20 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-storage-data" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="text-gray-400 mb-4">
-              Watch the dual-structure (array + mapping) in action with animated Add, Remove, and Swap-and-Pop operations.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-storage-data/10 text-storage-data rounded-full text-sm">Data Structure</span>
-              <span class="px-3 py-1 bg-storage-data/10 text-storage-data rounded-full text-sm">O(1) Operations</span>
-            </div>
-          </div>
-        </router-link>
-
-        <!-- Memory Module -->
-        <router-link 
-          to="/memory"
-          class="card hover:scale-105 transition-transform duration-300 group"
-        >
-          <div class="card-header">
-            <div class="flex items-center justify-between">
-              <h4 class="text-xl font-bold text-white">Memory Operations</h4>
-              <div class="w-12 h-12 bg-memory-data/20 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-memory-data" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="text-gray-400 mb-4">
-              Step through assembly operations with live memory visualization showing mstore, mload, and pointer management.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-memory-data/10 text-memory-data rounded-full text-sm">Assembly</span>
-              <span class="px-3 py-1 bg-memory-data/10 text-memory-data rounded-full text-sm">Low-level</span>
-            </div>
-          </div>
-        </router-link>
+    <!-- Learning Tracks Section -->
+    <section class="container mx-auto px-6 py-20" ref="modulesSection">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Learning Tracks</h2>
+        <p class="text-gray-400">Choose your path and dive deep into blockchain technology</p>
       </div>
+
+      <!-- EVM Track -->
+      <div class="mb-16">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-white">Ethereum Virtual Machine (EVM)</h3>
+            <p class="text-gray-400 text-sm">Master EVM storage, memory, and assembly programming</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Storage Track -->
+          <div class="card group hover:scale-105 transition-transform duration-300">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xl font-bold text-white">💾 Storage Deep Dive</h4>
+                <span class="text-xs text-gray-500">2 modules</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-gray-400 mb-4">
+                Understand EVM storage layout, ERC-7201 namespacing, and collision prevention strategies
+              </p>
+              <div class="space-y-2">
+                <router-link 
+                  to="/storage/erc7201"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">ERC-7201 Calculator</div>
+                  <div class="text-xs text-gray-400">Interactive slot calculation</div>
+                </router-link>
+                <router-link 
+                  to="/storage/namespaces"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">Storage Layout Visualization</div>
+                  <div class="text-xs text-gray-400">Complete storage structure overview</div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Track -->
+          <div class="card group hover:scale-105 transition-transform duration-300">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xl font-bold text-white">🧠 Memory & Assembly</h4>
+                <span class="text-xs text-gray-500">2 modules</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-gray-400 mb-4">
+                Learn memory management, assembly operations, and optimization techniques
+              </p>
+              <div class="space-y-2">
+                <router-link 
+                  to="/memory/basics"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">Memory Basics</div>
+                  <div class="text-xs text-gray-400">Structure, types & assembly ops</div>
+                </router-link>
+                <router-link 
+                  to="/memory/domainutils"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">DomainUtils Case Study</div>
+                  <div class="text-xs text-gray-400">77% gas savings with assembly</div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
-    <!-- Key Features Section -->
+    <!-- Why This Platform Section -->
     <section class="container mx-auto px-6 py-16">
-      <div class="card max-w-4xl mx-auto">
+      <div class="card max-w-5xl mx-auto">
         <div class="card-header">
-          <h3 class="text-2xl font-bold text-white">Why This Project?</h3>
+          <h3 class="text-2xl font-bold text-white">Why This Platform?</h3>
         </div>
         <div class="card-body">
-          <div class="grid md:grid-cols-2 gap-6">
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
-              <h4 class="text-lg font-semibold text-white mb-2">🎓 Educational Value</h4>
-              <p class="text-gray-400">
-                Deep dive into advanced Solidity patterns used in production smart contracts
+              <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Interactive Learning</h4>
+              <p class="text-gray-400 text-sm">
+                Visualizations and hands-on examples make complex concepts easy to grasp
               </p>
             </div>
             <div>
-              <h4 class="text-lg font-semibold text-white mb-2">🎨 Interactive Learning</h4>
-              <p class="text-gray-400">
-                Animated visualizations make complex concepts easy to understand
+              <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Real-World Code</h4>
+              <p class="text-gray-400 text-sm">
+                Based on production smart contracts, not theoretical examples
               </p>
             </div>
             <div>
-              <h4 class="text-lg font-semibold text-white mb-2">⚡ Real-world Examples</h4>
-              <p class="text-gray-400">
-                Based on actual did-contracts implementation, not textbook examples
+              <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Deep Technical</h4>
+              <p class="text-gray-400 text-sm">
+                Go beyond surface-level tutorials to understand how things really work
               </p>
             </div>
             <div>
-              <h4 class="text-lg font-semibold text-white mb-2">💼 Interview Ready</h4>
-              <p class="text-gray-400">
-                Perfect for demonstrating EVM mastery in technical interviews
+              <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Interview Ready</h4>
+              <p class="text-gray-400 text-sm">
+                Perfect for demonstrating blockchain expertise in technical interviews
               </p>
             </div>
           </div>
@@ -188,9 +244,10 @@
     <!-- Footer -->
     <footer class="border-t border-gray-800 bg-gray-900/50 mt-20">
       <div class="container mx-auto px-6 py-8">
-        <div class="text-center text-gray-400">
-          <p>Built with ❤️ to showcase EVM storage and memory operations</p>
-          <p class="text-sm mt-2">Based on did-contracts project</p>
+        <div class="text-center">
+          <p class="text-gray-400">
+            All rights reserved by learning.tangwei.uk
+          </p>
         </div>
       </div>
     </footer>

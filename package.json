@@ -1,7 +1,7 @@
 {
-  "name": "evm-storage-visualizer",
+  "name": "blockchain-deep-dive",
   "version": "0.1.0",
-  "description": "Interactive EVM Storage & Memory Visualization Tool based on did-contracts",
+  "description": "Interactive learning platform for blockchain fundamentals - EVM, Solana, Security & DeFi",
   "author": "Tang",
   "private": true,
   "type": "module",

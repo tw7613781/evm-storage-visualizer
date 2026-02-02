@@ -20,14 +20,14 @@ const router = createRouter({
       component: () => import('../views/NamespacesView.vue'),
     },
     {
-      path: '/tag-group',
-      name: 'tag-group',
-      component: () => import('../views/TagGroupView.vue'),
+      path: '/memory/basics',
+      name: 'memory-basics',
+      component: () => import('../views/MemoryBasicsView.vue'),
     },
     {
-      path: '/memory',
-      name: 'memory',
-      component: () => import('../views/MemoryView.vue'),
+      path: '/memory/domainutils',
+      name: 'domainutils',
+      component: () => import('../views/DomainUtilsView.vue'),
     },
   ],
 })

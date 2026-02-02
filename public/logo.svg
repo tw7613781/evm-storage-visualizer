@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Main background circle -->
+  <circle cx="50" cy="50" r="50" fill="#2d4a6f"/>
+  
+  <!-- Darker top arc for head -->
+  <path d="M 10 50 Q 10 15 50 15 Q 90 15 90 50 Z" fill="#1e3a5f"/>
+  
+  <!-- Combined eyes shape (white figure-8 / M shape) -->
+  <path d="
+    M 25 38
+    A 12 12 0 1 1 25 46
+    A 12 12 0 0 1 38 42
+    L 50 38
+    L 62 42
+    A 12 12 0 0 1 75 46
+    A 12 12 0 1 1 75 38
+    L 62 42
+    L 50 38
+    L 38 42
+    Z
+  " fill="white"/>
+  
+  <!-- Simpler approach: Two large white circles connected -->
+  <ellipse cx="32" cy="38" rx="13" ry="14" fill="white"/>
+  <ellipse cx="68" cy="38" rx="13" ry="14" fill="white"/>
+  <rect x="32" y="34" width="36" height="8" fill="white"/>
+  
+  <!-- Left pupil -->
+  <circle cx="32" cy="38" r="8" fill="#1e3a5f"/>
+  
+  <!-- Right pupil -->
+  <circle cx="68" cy="38" r="8" fill="#1e3a5f"/>
+  
+  <!-- Body (lower half) -->
+  <ellipse cx="50" cy="65" rx="35" ry="25" fill="#2d4a6f"/>
+  
+  <!-- Left foot -->
+  <g transform="translate(35, 75)">
+    <!-- Foot body -->
+    <rect x="-3" y="0" width="6" height="12" rx="2" fill="white"/>
+    <!-- Left toe -->
+    <line x1="-4" y1="12" x2="-6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Middle toe -->
+    <line x1="0" y1="12" x2="0" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Right toe -->
+    <line x1="4" y1="12" x2="6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Right foot -->
+  <g transform="translate(65, 75)">
+    <!-- Foot body -->
+    <rect x="-3" y="0" width="6" height="12" rx="2" fill="white"/>
+    <!-- Left toe -->
+    <line x1="-4" y1="12" x2="-6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Middle toe -->
+    <line x1="0" y1="12" x2="0" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Right toe -->
+    <line x1="4" y1="12" x2="6" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
