@@ -1,4 +1,4 @@
-# Blockchain Deep Dive
+# Blockchain Learning
 
 Interactive learning platform for blockchain fundamentals.
 

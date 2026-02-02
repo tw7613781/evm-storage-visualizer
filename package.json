@@ -1,7 +1,7 @@
 {
-  "name": "blockchain-deep-dive",
+  "name": "blockchain-learning",
   "version": "0.1.0",
-  "description": "Interactive learning platform for blockchain fundamentals - EVM, Solana, Security & DeFi",
+  "description": "Interactive learning platform for blockchain fundamentals",
   "author": "Tang",
   "private": true,
   "type": "module",

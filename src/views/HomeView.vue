@@ -55,7 +55,7 @@
 
           <!-- Main Heading -->
           <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Blockchain Deep Dive
+            Blockchain Learning
           </h1>
           
           <!-- Tagline -->
