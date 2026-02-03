@@ -40,6 +40,11 @@ const router = createRouter({
       component: () => import('../views/solana/SolanaPDAView.vue'),
     },
     {
+      path: '/solana/anchor-structures',
+      name: 'solana-anchor',
+      component: () => import('../views/solana/SolanaAnchorView.vue'),
+    },
+    {
       path: '/solana/evm-comparison',
       name: 'solana-evm-comparison',
       component: () => import('../views/solana/SolanaEvmComparisonView.vue'),

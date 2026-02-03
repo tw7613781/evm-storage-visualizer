@@ -251,12 +251,38 @@
             </div>
           </div>
 
-          <!-- EVM vs Solana -->
+          <!-- Anchor Framework -->
+          <div class="card group hover:scale-105 transition-transform duration-300">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xl font-bold text-white">⚓ Anchor Framework</h4>
+                <span class="text-xs text-gray-500">1 module</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-gray-400 mb-4">
+                Master the most popular Solana development framework with real examples from production code
+              </p>
+              <div class="space-y-2">
+                <router-link 
+                  to="/solana/anchor-structures"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">Anchor Deep Dive</div>
+                  <div class="text-xs text-gray-400">80% less code, 10x safer</div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVM Comparison (Full Width) -->
+        <div class="mt-6">
           <div class="card group hover:scale-105 transition-transform duration-300">
             <div class="card-header">
               <div class="flex items-center justify-between">
                 <h4 class="text-xl font-bold text-white">⚡ EVM vs Solana</h4>
-                <span class="text-xs text-gray-500">1 module</span>
+                <span class="text-xs text-gray-500">Complete comparison</span>
               </div>
             </div>
             <div class="card-body">

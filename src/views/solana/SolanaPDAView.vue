@@ -267,6 +267,154 @@
             </div>
           </div>
 
+          <!-- Calculation Formula Visualization -->
+          <div class="card" v-if="pdaResult">
+            <div class="card-header">
+              <h3 class="text-xl font-bold text-white">🧮 Calculation Formula</h3>
+            </div>
+            <div class="card-body">
+              <div class="bg-gray-900 rounded-lg p-4 space-y-3">
+                <div class="text-sm text-gray-400 mb-2">Step-by-step calculation:</div>
+                
+                <!-- Step 1: Seeds -->
+                <div class="flex items-start gap-3">
+                  <div class="text-purple-400 font-mono text-sm min-w-[60px]">Seeds:</div>
+                  <div class="flex-1">
+                    <div v-for="(seed, index) in seeds" :key="index" class="mb-1">
+                      <span class="text-gray-500 text-xs">{{ index + 1 }}.</span>
+                      <code class="text-xs bg-gray-800 px-2 py-1 rounded text-cyan-400 ml-2">
+                        {{ seed.label || seed.type }}: {{ truncateValue(seed.value) }}
+                      </code>
+                      <span class="text-gray-500 text-xs ml-2">({{ seed.type }})</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2: Bump -->
+                <div class="flex items-start gap-3">
+                  <div class="text-green-400 font-mono text-sm min-w-[60px]">Bump:</div>
+                  <code class="text-xs bg-gray-800 px-2 py-1 rounded text-green-400">{{ pdaResult.bump }}</code>
+                  <span class="text-gray-500 text-xs ml-2">(u8, tried from 255 down)</span>
+                </div>
+
+                <!-- Step 3: Program ID -->
+                <div class="flex items-start gap-3">
+                  <div class="text-blue-400 font-mono text-sm min-w-[60px]">Program:</div>
+                  <code class="text-xs bg-gray-800 px-2 py-1 rounded text-blue-400 break-all">{{ truncateAddress(programId) }}</code>
+                </div>
+
+                <!-- Step 4: Magic String -->
+                <div class="flex items-start gap-3">
+                  <div class="text-yellow-400 font-mono text-sm min-w-[60px]">Marker:</div>
+                  <code class="text-xs bg-gray-800 px-2 py-1 rounded text-yellow-400">"ProgramDerivedAddress"</code>
+                  <span class="text-gray-500 text-xs ml-2">(fixed constant)</span>
+                </div>
+
+                <!-- Formula -->
+                <div class="border-t border-gray-700 pt-3 mt-3">
+                  <div class="text-xs text-gray-400 mb-2">Hash Input:</div>
+                  <div class="bg-gray-800 rounded p-3 text-xs font-mono break-all">
+                    <span class="text-purple-400">SHA256</span>(
+                      <span class="text-cyan-400" v-for="(seed, index) in seeds" :key="'seed-' + index">
+                        seed{{ index + 1 }} + 
+                      </span>
+                      <span class="text-green-400">bump</span> + 
+                      <span class="text-blue-400">program_id</span> + 
+                      <span class="text-yellow-400">"ProgramDerivedAddress"</span>
+                    )
+                  </div>
+                </div>
+
+                <!-- Result -->
+                <div class="border-t border-gray-700 pt-3 mt-3">
+                  <div class="text-xs text-gray-400 mb-2">Result (if NOT on Ed25519 curve):</div>
+                  <code class="text-xs bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-500/50 px-3 py-2 rounded text-purple-300 block break-all">
+                    {{ pdaResult.address }}
+                  </code>
+                </div>
+              </div>
+
+              <div class="bg-yellow-500/10 border border-yellow-500/30 rounded p-3 text-xs text-gray-300 mt-3">
+                <strong class="text-yellow-400">Note about Label:</strong> The "label" field is just for your reference - 
+                it's NOT included in the calculation. Only the seed's <strong>value</strong> and <strong>type</strong> matter.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bump Search Animation -->
+          <div class="card" v-if="showBumpAnimation">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-white">🎬 Bump Search Process</h3>
+                <button
+                  @click="startBumpAnimation"
+                  class="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded transition-colors"
+                >
+                  ▶ Replay
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-sm text-gray-400 mb-4">
+                Solana tries bump values from 255 down to 0 until it finds an address NOT on the Ed25519 curve:
+              </p>
+
+              <div class="bg-gray-900 rounded-lg p-4">
+                <!-- Current Bump -->
+                <div class="text-center mb-4">
+                  <div class="text-xs text-gray-400 mb-1">Current Bump:</div>
+                  <div class="text-4xl font-bold font-mono" :class="bumpAnimationState.found ? 'text-green-400' : 'text-yellow-400'">
+                    {{ bumpAnimationState.currentBump }}
+                  </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-4">
+                  <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div 
+                      class="h-full transition-all duration-300"
+                      :class="bumpAnimationState.found ? 'bg-green-500' : 'bg-yellow-500'"
+                      :style="{ width: bumpAnimationState.progress + '%' }"
+                    ></div>
+                  </div>
+                  <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>255</span>
+                    <span>{{ bumpAnimationState.attempts }} attempts</span>
+                    <span>0</span>
+                  </div>
+                </div>
+
+                <!-- Status -->
+                <div class="text-center text-sm p-3 rounded" :class="bumpAnimationState.found ? 'bg-green-500/10 border border-green-500/30' : 'bg-yellow-500/10 border border-yellow-500/30'">
+                  <span v-if="!bumpAnimationState.found" class="text-yellow-400">
+                    🔍 Testing bump {{ bumpAnimationState.currentBump }}... 
+                    <span class="text-gray-400">Hash result is on curve, trying next...</span>
+                  </span>
+                  <span v-else class="text-green-400">
+                    ✅ Found valid PDA! Bump {{ bumpAnimationState.currentBump }} produces an address NOT on the curve.
+                  </span>
+                </div>
+
+                <!-- Hash visualization -->
+                <div class="mt-4 text-xs">
+                  <div class="text-gray-400 mb-2">Hash Calculation:</div>
+                  <div class="bg-gray-800 rounded p-2 font-mono break-all text-gray-500">
+                    SHA256(seeds + <span class="text-yellow-400">{{ bumpAnimationState.currentBump }}</span> + program_id + "ProgramDerivedAddress")
+                  </div>
+                  <div class="mt-2 text-gray-400">
+                    <span v-if="!bumpAnimationState.found">→ Result: <span class="text-red-400">On curve ✗</span></span>
+                    <span v-else>→ Result: <span class="text-green-400">Off curve ✓</span> (Valid PDA!)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-purple-500/10 border border-purple-500/30 rounded p-3 text-xs text-gray-300 mt-4">
+                <strong class="text-purple-400">Fun Fact:</strong> On average, about 50% of hashes will be on the curve, 
+                so typically you only need to try 1-2 bump values. But in worst case, you might need to try all 256 values!
+              </div>
+            </div>
+          </div>
+
           <!-- Real World Example -->
           <div class="card">
             <div class="card-header">
@@ -306,6 +454,17 @@ import type { SeedInput } from '../../types/solana'
 const programId = ref('FAqaHQHgBFFX8fJB6fQUqNdc8zABV5pGVRdCt7fLLYVo')
 const seeds = ref<SeedInput[]>([])
 const pdaResult = ref<{ address: string; bump: number } | null>(null)
+const showBumpAnimation = ref(false)
+
+// Bump animation state
+const bumpAnimationState = ref({
+  currentBump: 255,
+  attempts: 0,
+  found: false,
+  progress: 0
+})
+
+let bumpAnimationTimer: number | null = null
 
 const presets = ref([
   {
@@ -368,6 +527,7 @@ function loadPreset(preset: typeof presets.value[0]) {
 function calculatePDA() {
   if (!programId.value || seeds.value.length === 0) {
     pdaResult.value = null
+    showBumpAnimation.value = false
     return
   }
 
@@ -384,9 +544,58 @@ function calculatePDA() {
       address: mockAddress,
       bump
     }
+    
+    showBumpAnimation.value = true
+    startBumpAnimation()
   } catch (error) {
     pdaResult.value = null
+    showBumpAnimation.value = false
   }
+}
+
+function startBumpAnimation() {
+  // Reset animation state
+  if (bumpAnimationTimer) {
+    clearInterval(bumpAnimationTimer)
+  }
+  
+  bumpAnimationState.value = {
+    currentBump: 255,
+    attempts: 0,
+    found: false,
+    progress: 0
+  }
+
+  const targetBump = pdaResult.value?.bump || 253
+  const speed = 150 // ms per attempt
+
+  bumpAnimationTimer = window.setInterval(() => {
+    if (bumpAnimationState.value.currentBump <= targetBump) {
+      bumpAnimationState.value.found = true
+      if (bumpAnimationTimer) {
+        clearInterval(bumpAnimationTimer)
+      }
+      return
+    }
+
+    bumpAnimationState.value.currentBump--
+    bumpAnimationState.value.attempts++
+    bumpAnimationState.value.progress = ((255 - bumpAnimationState.value.currentBump) / 255) * 100
+  }, speed)
+}
+
+function truncateValue(value: string): string {
+  if (value.length > 20) {
+    return value.substring(0, 10) + '...' + value.substring(value.length - 6)
+  }
+  return value
+}
+
+function truncateAddress(address: string): string {
+  if (address.length > 20) {
+    return address.substring(0, 8) + '...' + address.substring(address.length - 8)
+  }
+  return address
 }
 
 function generateMockAddress(seeds: string, program: string, bump: number): string {
