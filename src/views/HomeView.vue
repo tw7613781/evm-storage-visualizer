@@ -202,7 +202,7 @@
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           <!-- Account Model -->
           <div class="card group hover:scale-105 transition-transform duration-300">
             <div class="card-header">
@@ -222,6 +222,30 @@
                 >
                   <div class="text-sm font-semibold text-white">Solana Account Model</div>
                   <div class="text-xs text-gray-400">Everything is an account</div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transactions -->
+          <div class="card group hover:scale-105 transition-transform duration-300">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xl font-bold text-white">📦 Transactions</h4>
+                <span class="text-xs text-gray-500">1 module</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-gray-400 mb-4">
+                Learn Solana's transaction structure and how multiple instructions execute atomically
+              </p>
+              <div class="space-y-2">
+                <router-link 
+                  to="/solana/transactions"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">Transaction Structure</div>
+                  <div class="text-xs text-gray-400">Atomic multi-instruction</div>
                 </router-link>
               </div>
             </div>
@@ -270,6 +294,30 @@
                 >
                   <div class="text-sm font-semibold text-white">Anchor Deep Dive</div>
                   <div class="text-xs text-gray-400">80% less code, 10x safer</div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+
+          <!-- CPI -->
+          <div class="card group hover:scale-105 transition-transform duration-300">
+            <div class="card-header">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xl font-bold text-white">🔗 CPI</h4>
+                <span class="text-xs text-gray-500">1 module</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-gray-400 mb-4">
+                Learn how programs call other programs, including PDA signing and composability patterns
+              </p>
+              <div class="space-y-2">
+                <router-link 
+                  to="/solana/cpi"
+                  class="block p-3 bg-gray-800 rounded hover:bg-gray-700 transition-colors"
+                >
+                  <div class="text-sm font-semibold text-white">Cross-Program Invocation</div>
+                  <div class="text-xs text-gray-400">Program composability</div>
                 </router-link>
               </div>
             </div>

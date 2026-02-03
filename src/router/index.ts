@@ -45,6 +45,16 @@ const router = createRouter({
       component: () => import('../views/solana/SolanaAnchorView.vue'),
     },
     {
+      path: '/solana/cpi',
+      name: 'solana-cpi',
+      component: () => import('../views/solana/SolanaCPIView.vue'),
+    },
+    {
+      path: '/solana/transactions',
+      name: 'solana-transactions',
+      component: () => import('../views/solana/SolanaTransactionsView.vue'),
+    },
+    {
       path: '/solana/evm-comparison',
       name: 'solana-evm-comparison',
       component: () => import('../views/solana/SolanaEvmComparisonView.vue'),
